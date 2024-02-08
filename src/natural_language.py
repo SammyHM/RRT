@@ -11,137 +11,53 @@ class NaturalLanguange:
 
 
     dictionaries = {
-        "afrikaans"     :   "af",
         "albanian"	    :   "sq",
-        "amharic"	    :   "am",
         "arabic"	    :   "ar",
-        "armenian"	    :   "hy",
-        "assamese"	    :   "as",
-        "aymara"	    :   "ay",
         "azerbaijani"	:   "az",
-        "bambara"	    :   "bm",
-        "basque"	    :   "eu",
-        "belarusian"	:   "be",
         "bengali"	    :   "bn",
-        "bhojpuri"	    :   "bho",
-        "bosnian"	    :   "bs",
         "bulgarian"	    :   "bg",
         "catalan"	    :   "ca",
         "cebuano"	    :   "ceb",
         "chinese"       :   "zh",
-        "corsican"	    :   "co",
-        "croatian"	    :   "hr",
+        "chinese-t"     :   "zt",
         "czech"	        :   "cs",
         "danish"	    :   "da",
-        "dhivehi"	    :   "dv",
-        "dogri"	        :   "doi",
         "dutch"	        :   "nl",
         "english"	    :   "en",
         "esperanto"	    :   "eo",
         "estonian"	    :   "et",
-        "ewe"	        :   "ee",
-        "filipino"      :   "fil",
         "finnish"	    :   "fi",
         "french"	    :   "fr",
-        "frisian"	    :   "fy",
-        "galician"	    :   "gl",
-        "georgian"	    :   "ka",
         "german"	    :   "de",
         "greek"	        :   "el",
-        "guarani"	    :   "gn",
-        "gujarati"	    :   "gu",
-        "haitian"       :   "ht",
-        "hausa"	        :   "ha",
-        "hawaiian"	    :   "haw",
         "hebrew"	    :   "he",
         "hindi"	        :   "hi",
-        "hmong"	        :   "hmn",
         "hungarian"	    :   "hu",
-        "icelandic"	    :   "is",
-        "igbo"	        :   "ig",
-        "ilocano"	    :   "ilo",
         "indonesian"	:   "id",
         "irish"	        :   "ga",
         "italian"	    :   "it",
         "japanese"	    :   "ja",
-        "javanese"	    :   "jv",
-        "kannada"	    :   "kn",
-        "kazakh"	    :   "kk",
-        "khmer"	        :   "km",
-        "kinyarwanda"	:   "rw",
-        "konkani"	    :   "gom",
         "korean"	    :   "ko",
-        "krio"	        :   "kri",
-        "kurdish"	    :   "ku",
-        "kyrgyz"	    :   "ky",
-        "lao"	        :   "lo",
-        "latin"	        :   "la",
         "latvian"	    :   "lv",
-        "lingala"	    :   "ln",
         "lithuanian"	:   "lt",
-        "luganda"	    :   "lg",
-        "luxembourgish"	:   "lb",
-        "macedonian"	:   "mk",
-        "maithili"	    :   "mai",
-        "malagasy"	    :   "mg",
         "malay"	        :   "ms",
-        "malayalam"	    :   "ml",
-        "maltese"	    :   "mt",
-        "maori"	        :   "mi",
-        "marathi"	    :   "mr",
-        "mizo"	        :   "lus",
-        "mongolian"	    :   "mn",
-        "myanmar"       :   "my",
-        "nepali"	    :   "ne",
         "norwegian"	    :   "no",
-        "nyanja"        :   "ny",
-        "odia"          :   "or",
-        "oromo"	        :   "om",
-        "pashto"	    :   "ps",
         "persian"	    :   "fa",
         "polish"	    :   "pl",
         "portuguese"    :   "pt",
-        "punjabi"	    :   "pa",
-        "quechua"	    :   "qu",
         "romanian"	    :   "ro",
         "russian"	    :   "ru",
-        "samoan"	    :   "sm",
-        "sanskrit"	    :   "sa",
-        "scots Gaelic"	:   "gd",
-        "sepedi"	    :   "nso",
         "serbian"	    :   "sr",
-        "sesotho"	    :   "st",
-        "shona"	        :   "sn",
-        "sindhi"	    :   "sd",
-        "sinhala"       :   "si",
         "slovak"	    :   "sk",
         "slovenian"	    :   "sl",
-        "somali"	    :   "so",
         "spanish"	    :   "es",
-        "sundanese"	    :   "su",
-        "swahili"	    :   "sw",
         "swedish"	    :   "sv",
         "tagalog"       :   "tl",
-        "tajik"	        :   "tg",
-        "tamil"	        :   "ta",
-        "tatar"	        :   "tt",
-        "telugu"	    :   "te",
         "thai"	        :   "th",
-        "tigrinya"      :   "ti",
-        "tsonga"	    :   "ts",
         "turkish"	    :   "tr",
-        "turkmen"	    :   "tk",
-        "twi"         	:   "ak",
         "ukrainian"	    :   "uk",
         "urdu"	        :   "ur",
-        "uyghur"	    :   "ug",
-        "uzbek"	        :   "uz",
         "vietnamese"	:   "vi",
-        "welsh"	        :   "cy",
-        "xhosa"	        :   "xh",
-        "yiddish"	    :   "yi",
-        "yoruba"	    :   "yo",
-        "zulu"	        :   "zu"
     }
 
 
@@ -149,7 +65,7 @@ class NaturalLanguange:
         self.stopwords = language
 
     
-    def text_reduction(self, text: str, deviations = 1.7) -> str:
+    def text_reduction(self, text: str, deviations = 1.75) -> str:
         """ Reduces text by calculating a score for each sentece, it's mean
             and as a result, return all senteces that deviate positively from it.
         """
@@ -189,21 +105,17 @@ class NaturalLanguange:
 
     @staticmethod
     def translate(text: str, to_lang: str):
-        """ Given a target language, translates
+        """ Given a target language, returns a translation of the given text
         """
         NaturalLanguange.assert_valid_language(to_lang)
 
         to_lang = NaturalLanguange.dictionaries[to_lang]
-        from_lan = "autodetect"
-        translator = Translator(to_lang=to_lang, from_lan=from_lan)
+        translator = Translator(from_lang='autodetect', to_lang=to_lang)
 
         translation = ""
         sentences = sent_tokenize(text)
-        try:
-            for sentence in sentences:
-                translation += translator.translate(sentence) + " "
-        except Exception as error:
-            translation = "Translation unavailable, try in a day's time."
+        for sentence in sentences:
+            translation += translator.translate(sentence) + " "
         return translation
 
 

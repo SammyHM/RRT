@@ -1,0 +1,5 @@
+scholarly
+numpy
+PyPDF2
+nltk
+translate

@@ -42,14 +42,14 @@ if __name__ == '__main__':
         # 1.- Generate recomendation
         print("Picking the best publication...")
         best = best_publication(pubs)
-        article_name = best['bib']['title']
+        article_name = best['bib']['pdf_title']
         print(f"Best article found is: '{article_name}'.")
         print(f"Link: {best['eprint_url']}.")
         print("Fetching data...")
         text = fetch_pdf_data(best)
         # 2.- Summerize text
         print(f"\nSummarizing its contents...")
-        summary = nl.text_reduction(text)
+        summary = f"Abstract:\n{best['bib']['abstract']}\n{nl.text_reduction(text)}"
         summary_path = create_file(summary, article_name)
         print(f'Saved summary at {summary_path}')
         # 3.- Translate summary
@@ -61,4 +61,4 @@ if __name__ == '__main__':
             translate_path = create_file(translated_text, article_name, target_lan)
             print(f"Saved translation at: {translate_path}")
             target_lan = input_valid_language()
-        print("Thanks for using RRT!")
+        print("Thanks for using GSpy!")
