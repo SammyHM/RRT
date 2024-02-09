@@ -87,4 +87,8 @@ Repeats:
 
 # Ejemplo
 
-<iframe src="docs/video/example.mp4" title="Example"></iframe>
+<div align='center'>
+
+[![Ejemplo](/docs/img/GSpy512Play.jpg)](docs/video/example.mkv)
+
+</div>
