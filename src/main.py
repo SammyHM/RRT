@@ -1,5 +1,5 @@
 from pub_test import PUB_TEST
-from recommedation import search_pubs, best_publication, fetch_pdf_data
+from recommendation import search_pubs, best_publication, fetch_pdf_data
 from natural_language import NaturalLanguange
 
 

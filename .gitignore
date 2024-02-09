@@ -1,4 +1,10 @@
+# Environment
+/.vscode
 /.venv
+# Application output
 /data/*
 /out/*
+# Cache
 /src/__pycache__
+# Tests
+/src/*_test.py
