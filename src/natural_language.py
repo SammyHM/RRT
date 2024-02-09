@@ -1,9 +1,6 @@
-# pip install nltk
-# https://www.turing.com/kb/5-powerful-text-summarization-techniques-in-python
 from nltk.corpus import stopwords                       
 from nltk.tokenize import word_tokenize, sent_tokenize
 
-# pip install translate
 from translate import Translator
 
 
@@ -65,7 +62,7 @@ class NaturalLanguange:
         self.stopwords = language
 
     
-    def text_reduction(self, text: str, deviations = 1.75) -> str:
+    def text_reduction(self, text: str, deviations = 1.8) -> str:
         """ Reduces text by calculating a score for each sentece, it's mean
             and as a result, return all senteces that deviate positively from it.
         """
@@ -107,11 +104,12 @@ class NaturalLanguange:
     def translate(text: str, to_lang: str):
         """ Given a target language, returns a translation of the given text
         """
+        # Validate input
         NaturalLanguange.assert_valid_language(to_lang)
-
+        # Setup translator
         to_lang = NaturalLanguange.dictionaries[to_lang]
         translator = Translator(from_lang='autodetect', to_lang=to_lang)
-
+        # Translate sentence by sentence
         translation = ""
         sentences = sent_tokenize(text)
         for sentence in sentences:

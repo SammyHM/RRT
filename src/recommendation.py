@@ -1,9 +1,6 @@
-# pip install scholarly
-# pip install numpy
 from scholarly import scholarly, ProxyGenerator, MaxTriesExceededException, Publication
 from numpy import clip, sort
 
-# pip install PyPDF2
 from requests import get as fetch
 from PyPDF2 import PdfReader
 from re import sub as replace
@@ -44,8 +41,8 @@ def best_publication(pubs: list()) -> Publication:
             best = pubs[index]
             break
     # 4.- Fetch all data of the best Publication
-    # if best != None:
-    #     best = scholarly.fill(best)
+    if best != None:
+        best = scholarly.fill(best)
     # 5.- Clean data
     best['bib']['pdf_title'] = replace(r'[<>:"/\\|?*]', '_', best['bib']['title'])
     return best

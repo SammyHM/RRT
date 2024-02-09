@@ -3,7 +3,9 @@
 /.venv
 # Application output
 /data/*
+!/data/.gitkeep
 /out/*
+!/out/.gitkeep
 # Cache
 /src/__pycache__
 # Tests

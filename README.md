@@ -28,12 +28,13 @@ Las dependecians se pueden encontrar en el fichero [Requirements](requirements.t
     * [Main](src/main.py): Punto de entrada para la aplicación.
     * [Natural Language](src/natural_language.py): Procesamiento del lenguaje natural de los articulos.
     * [Recommendation](src/recommendation.py): Sistema de recomendación de artículos.
+* [Gitignore](.gitignore): Contiene una lista de ficheros que no son interesantes de guardar.
 * [README](README.md): Es el documento que estas leyendo.
 * [Requirements](requirements): Contiene los paquetes dependencia del proyecto.
 
 ## Depliegue
 
-
+Python 3.8.10-3.12.0
 
 ## Funcionamiento
 

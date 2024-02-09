@@ -1,4 +1,3 @@
-from pub_test import PUB_TEST
 from recommendation import search_pubs, best_publication, fetch_pdf_data
 from natural_language import NaturalLanguange
 
@@ -31,8 +30,7 @@ if __name__ == '__main__':
     nl = NaturalLanguange("english")
     query = input("What topic do you whant to search? ")
     print("\nSearching for publications...")
-    # pubs = search_pubs(query)
-    pubs = PUB_TEST
+    pubs = search_pubs(query)
 
     if pubs == None:
         print(f"To many tries. Try in two days time.")
@@ -49,7 +47,7 @@ if __name__ == '__main__':
         text = fetch_pdf_data(best)
         # 2.- Summerize text
         print(f"\nSummarizing its contents...")
-        summary = f"Abstract:\n{best['bib']['abstract']}\n{nl.text_reduction(text)}"
+        summary = f"Abstract:\n{best['bib']['abstract']}\nContent:\n{nl.text_reduction(text)}"
         summary_path = create_file(summary, article_name)
         print(f'Saved summary at {summary_path}')
         # 3.- Translate summary
