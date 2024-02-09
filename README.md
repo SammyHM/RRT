@@ -34,11 +34,27 @@ Las dependecians se pueden encontrar en el fichero [Requirements](requirements.t
 
 ## Depliegue
 
-Python 3.8.10-3.12.0
+Se recomienda usar Visual Studio Code con la extension Pytho y tener instalada una versión de python entre 3.8.10 y 3.12.0.
+
+1. Dirijase al directorio donde quiere instalar la aplicación.
+2. Descomprime el proyecto o clona con git el repositorio.
+
+```shell
+git clone https://github.com/SammyHM/RRT.git
+```
+3. Crea un entorno con venv (preferible) o conda y selecciona el fichero requirements.txt como dependencias a instalar.
+
+<div align='center'>
+
+![Entorno](docs/img/Environment.png)
+![Requerimientos](docs/img/Requirements.png)
+
+</div>
+
+4. Espera a que termine la instalación
+5. Ejecuta el script [main.py](src/main.py).
 
 ## Funcionamiento
-
-0. Ejecutar el script [main.py](src/main.py).
 
 1. Se pide al usuario un tema para buscar, debe ser en Inglés (se implementará para otros idiomas en versiones futuras).
 
@@ -71,4 +87,4 @@ Repeats:
 
 # Ejemplo
 
-
+<iframe src="docs/video/example.mp4" title="Example"></iframe>
