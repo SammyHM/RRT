@@ -2,8 +2,8 @@
 /.vscode
 /.venv
 # Application output
-/data/*
-!/data/.gitkeep
+/data/*/*
+!/data/**/.gitkeep
 /out/*
 !/out/.gitkeep
 # Cache

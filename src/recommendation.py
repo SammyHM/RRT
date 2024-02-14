@@ -1,4 +1,6 @@
 from scholarly import scholarly, ProxyGenerator, MaxTriesExceededException, Publication
+from json import dumps as save_json
+from datetime import datetime
 from numpy import clip, sort
 
 from requests import get as fetch
@@ -22,6 +24,15 @@ def search_pubs(query: str) -> list():
     else:
         total_results = 0 if publications.total_results == None else publications.total_results
     return None if total_results == -1 else [next(publications) for _ in range(clip(MAX_PUBS, 0, total_results))]
+
+
+def save_pubs(pubs: list(), name: str) -> None:
+    """ Given a list of Publication type objects, saves a json file representative of it.
+    """
+    timestamp = datetime.now().strftime("%Y-%m-%d %H-%M-%S")
+    json = save_json(pubs, indent=4)
+    with open(f"data/json/{name} {timestamp}.json", "w") as json_file:
+        json_file.write(json)
 
 
 def best_publication(pubs: list()) -> Publication:
@@ -52,7 +63,7 @@ def fetch_pdf_data(publication: Publication) -> str:
     """ Given a publication, fetches data from the url and writes it to local file.
         Returns the text found in the pdf
     """
-    with open(f"data/{publication['bib']['pdf_title']}.pdf", 'w+b') as pdf_file:
+    with open(f"data/pdf/{publication['bib']['pdf_title']}.pdf", 'w+b') as pdf_file:
         # Create pdf file and fill content
         response = fetch(publication['eprint_url'])
         pdf_file.write(response.content)

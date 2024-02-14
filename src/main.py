@@ -1,4 +1,4 @@
-from recommendation import search_pubs, best_publication, fetch_pdf_data
+from recommendation import search_pubs, save_pubs, best_publication, fetch_pdf_data
 from natural_language import NaturalLanguange
 
 
@@ -37,6 +37,8 @@ if __name__ == '__main__':
     elif len(pubs) == 0:
         print(f"{query} is unavailable. Try an other subject.")
     else:
+        # 0.- Save publication
+        save_pubs(pubs, f"{query}")
         # 1.- Generate recomendation
         print("Picking the best publication...")
         best = best_publication(pubs)

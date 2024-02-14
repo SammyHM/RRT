@@ -42,7 +42,21 @@ Se recomienda usar Visual Studio Code con la extension Pytho y tener instalada u
 ```shell
 git clone https://github.com/SammyHM/RRT.git
 ```
-3. Crea un entorno con venv (preferible) o conda y selecciona el fichero requirements.txt como dependencias a instalar.
+3. Crea un entorno python preferiblemente venv.
+
+### Shell
+
+```shell
+python3 -m venv .venv
+pip install requirements.txt
+```
+
+### Visual Studio
+
+> 1. Instala la extensión *Python*.
+> 2. Pulsa *Ctrl+Shift+p* y selecciona *Python: Create Environment...*
+> 3. Selecciona el tipo de entorno
+> 4. Añade el fichero requirements.txt como dependencia.
 
 <div align='center'>
 
@@ -62,7 +76,7 @@ git clone https://github.com/SammyHM/RRT.git
 
 3. Resumen del contenido: Se realiza un resumen mediante técnicas de reducción del contenido y se muestra la ruta del fichero de texto resultante alojada en la carpeta [out](out).
 
-4. Traducción del contenido: Se pide al usuario un idioma válido, se aplica la traducción sobre el contenido resumido y se muestra la ruta del fichero de texto resultante alojada en la carpeta [out](out). Este proceso se repite hasta que el usuario escriba **quit**.
+4. Traducción del contenido: Se pide al usuario un idioma válido, se aplica la traducción sobre el contenido resumido y se muestra la ruta del fichero de texto resultante alojada en la carpeta [out](out). Este proceso se repite hasta que el usuario escriba *quit*.
 
 ```console
 1.- What topic do you whant to search? _ (Insert topic)
@@ -92,3 +106,7 @@ Repeats:
 [![Ejemplo](/docs/img/GSpy512Play.jpg)](docs/video/example.mkv)
 
 </div>
+
+# Bibliografía
+
+* [Natural Language Tool Kit.](https://www.kaggle.com/code/imkrkannan/text-summarization-with-nltk-in-python)
