@@ -1,4 +1,5 @@
 from scholarly import scholarly, ProxyGenerator, MaxTriesExceededException, Publication
+from time import sleep
 from numpy import clip, sort
 
 from requests import get as fetch
@@ -6,7 +7,15 @@ from PyPDF2 import PdfReader
 from re import sub as replace
 
 
-MAX_PUBS = 30
+MAX_PUBS = 10
+SLEEP_TIMER = 3
+
+
+def next_publication(publications: iter) -> Publication:
+    """ Given a publication iterable, sleeps the application for some time and returns the next publication
+    """
+    sleep(SLEEP_TIMER)
+    return next(publications)
 
 
 def search_pubs(query: str) -> list():
@@ -21,7 +30,7 @@ def search_pubs(query: str) -> list():
     # 3.- Iterate over publication results.
     else:
         total_results = 0 if publications.total_results == None else publications.total_results
-    return None if total_results == -1 else [next(publications) for _ in range(clip(MAX_PUBS, 0, total_results))]
+    return None if total_results == -1 else [next_publication(publications) for _ in range(clip(MAX_PUBS, 0, total_results))]
 
 
 def best_publication(pubs: list()) -> Publication:
@@ -48,14 +57,17 @@ def best_publication(pubs: list()) -> Publication:
     return best
 
 
-def fetch_pdf_data(publication: Publication) -> str:
+def fetch_pdf_data(publication: Publication) -> None:
     """ Given a publication, fetches data from the url and writes it to local file.
         Returns the text found in the pdf
     """
-    with open(f"data/{publication['bib']['pdf_title']}.pdf", 'w+b') as pdf_file:
-        # Create pdf file and fill content
+    with open(f"data/pdf/{publication['bib']['pdf_title']}.pdf", 'wb') as pdf_file:
         response = fetch(publication['eprint_url'])
         pdf_file.write(response.content)
+
+
+def parse_pdf_data(publication: Publication) -> str:
+    with open(f"data/pdf/{publication['bib']['pdf_title']}.pdf", 'rb') as pdf_file:
         # Read pdf file
         reader = PdfReader(pdf_file)
         text = '\n'.join([page.extract_text() for page in reader.pages])
@@ -63,5 +75,5 @@ def fetch_pdf_data(publication: Publication) -> str:
         text = text.replace('-\n', '')
         text = text.replace('.', '.\n')
         text = replace(r'[\sa-zA-Z]\n', ' ', text)
-        
+
     return text

@@ -1,5 +1,6 @@
-from recommendation import search_pubs, best_publication, fetch_pdf_data
+from recommendation import search_pubs, best_publication, fetch_pdf_data, parse_pdf_data
 from natural_language import NaturalLanguange
+from json import dumps as save_json
 
 
 def input_valid_language() -> str:
@@ -13,7 +14,7 @@ def input_valid_language() -> str:
     return language
 
 
-def create_file(content: str, article: str, lan: str = 'default') -> str:
+def create_txt(content: str, article: str, lan: str = 'default') -> str:
     """ Creates a text file at 'out' directory with its corresponding content.
         Returns file path
     """
@@ -23,6 +24,21 @@ def create_file(content: str, article: str, lan: str = 'default') -> str:
     with open(f'{file_name}', 'w', encoding='utf-8') as summary_file:
         summary_file.write(content)
     return file_name
+
+def save_pubs(pubs: list(), name: str) -> None:
+    """ Given a list of Publication type objects, saves a json file representative of it.
+    """
+    json = save_json(pubs, indent=4)
+    with open(f"data/json/query/{name}.json", "w") as json_file:
+        json_file.write(json)
+
+
+def save_summaries(pubs: list(), name: str) -> None:
+    """ Given a list of summaries, saves a json file representative of it.
+    """
+    json = save_json(pubs, indent=4)
+    with open(f"data/json/summary/{name}.json", "w") as json_file:
+        json_file.write(json)
 
 
 if __name__ == '__main__':
@@ -37,6 +53,8 @@ if __name__ == '__main__':
     elif len(pubs) == 0:
         print(f"{query} is unavailable. Try an other subject.")
     else:
+        # 0.- Save publication
+        save_pubs(pubs, f"{query}")
         # 1.- Generate recomendation
         print("Picking the best publication...")
         best = best_publication(pubs)
@@ -44,19 +62,25 @@ if __name__ == '__main__':
         print(f"Best article found is: '{article_name}'.")
         print(f"Link: {best['eprint_url']}.")
         print("Fetching data...")
-        text = fetch_pdf_data(best)
+        fetch_pdf_data(best)
+        print("Parsing data...")
+        text = parse_pdf_data(best)
         # 2.- Summerize text
         print(f"\nSummarizing its contents...")
         summary = f"Abstract:\n{best['bib']['abstract']}\nContent:\n{nl.text_reduction(text)}"
-        summary_path = create_file(summary, article_name)
+        summary_path = create_txt(summary, article_name)
         print(f'Saved summary at {summary_path}')
+        summary_data = {'default': summary}
         # 3.- Translate summary
         print(f'\nAvailable languages: {NaturalLanguange.dictionaries.keys()}')
         target_lan = input_valid_language()
         while target_lan.lower() != 'quit':
             print(f"Translating document to {target_lan}...")
             translated_text = NaturalLanguange.translate(summary, target_lan)
-            translate_path = create_file(translated_text, article_name, target_lan)
+            translate_path = create_txt(translated_text, article_name, target_lan)
+            summary_data[target_lan] = translated_text
             print(f"Saved translation at: {translate_path}")
             target_lan = input_valid_language()
+        # 4.- Save all summaries
+        save_summaries(summary_data, query)
         print("Thanks for using GSpy!")
