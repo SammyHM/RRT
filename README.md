@@ -12,17 +12,17 @@ GSpy es una aplicación que permite el resumen y la traducción de los mejores d
 
 Las dependecians se pueden encontrar en el fichero [Requirements](requirements.txt).
 
-* scholarly: Implementa Google Scholar API para python.
-* numpy: Funciones de utilidad matemática, como puede ser la media o la ordenación de elementos.
-* PyPDF2: Extracción del contenido dentro de los PDFs.
-* nltk: Procesamiento de lenguaje natural, como la tokenización de palabras o frases.
-* translate: Implementa Google Translate API para python.
+* scholarly: Implementa ScraperAPI en python, para hacer web scrapping en Google Scholar.
+* numpy: Funciones de utilidad matemática, como la media o la ordenación de elementos.
+* PyPDF2: Extracción del contenido dentro de PDFs.
+* nltk: Procesamiento de lenguaje natural, para la tokenización de palabras y frases.
+* translate: Implementa Google Translate API en python, para la traducción de texto a multiples idiomas.
 
 ## Estructura
 
-* [Data](data): Contiene los PDFs relacionados a la temática que el usuario pide.
-* [Docs](docs): Contiene todos los recursos usados para la documentación.
-* [Out](out): Contiene todos los resumenes realizados, tanto los originales como los traducidos.
+* [Data](data): Contiene los datos generados por la aplicación. Estos son los PDFs relacionados a la temática que el usuario pide y JSON con información sobre el resultado de la query o los contenidos resumidos.
+* [Docs](docs): Contiene todos los recursos usados para este documento.
+* [Out](out): Contiene todos los resumenes realizados, tanto los originales como los traducidos en ficheros txt.
 * [Src](src): Contiene el codigo fuente.
     * [Init](src/__init__.py): Contiene todo los pasos previos que la aplicación necesita para el despliegue de esta.
     * [Main](src/main.py): Punto de entrada para la aplicación.
@@ -34,7 +34,7 @@ Las dependecians se pueden encontrar en el fichero [Requirements](requirements.t
 
 ## Depliegue
 
-Se recomienda usar Visual Studio Code con la extension Pytho y tener instalada una versión de python entre 3.8.10 y 3.12.0.
+Se recomienda usar Visual Studio Code con la extension Python y tener instalada una versión de python entre 3.8.10 y 3.12.0.
 
 1. Dirijase al directorio donde quiere instalar la aplicación.
 2. Descomprime el proyecto o clona con git el repositorio.
@@ -44,14 +44,14 @@ git clone https://github.com/SammyHM/RRT.git
 ```
 3. Crea un entorno python preferiblemente venv.
 
-### Shell
+#### Shell
 
 ```shell
 python3 -m venv .venv
 pip install requirements.txt
 ```
 
-### Visual Studio
+#### Visual Studio
 
 > 1. Instala la extensión *Python*.
 > 2. Pulsa *Ctrl+Shift+p* y selecciona *Python: Create Environment...*
@@ -86,6 +86,7 @@ Picking the best publication...
 Best article found is: {Name}
 Link: {Link}
 Fetching data...
+Parsing data...
 
 3.- Summarizing its contents...
 Saved summary at {file location}
