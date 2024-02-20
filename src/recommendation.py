@@ -4,7 +4,6 @@ from numpy import clip, sort
 
 from requests import get as fetch
 from PyPDF2 import PdfReader
-from re import sub as replace
 
 
 MAX_PUBS = 10
@@ -74,6 +73,6 @@ def parse_pdf_data(publication: Publication) -> str:
         # Format the resulting text
         text = text.replace('-\n', '')
         text = text.replace('.', '.\n')
-        text = replace(r'[\sa-zA-Z]\n', ' ', text)
+        text = text.replace(' \n', ' ')
 
     return text

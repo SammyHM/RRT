@@ -24,7 +24,7 @@ Las dependecians se pueden encontrar en el fichero [Requirements](requirements.t
 * [Docs](docs): Contiene todos los recursos usados para este documento.
 * [Out](out): Contiene todos los resumenes realizados, tanto los originales como los traducidos en ficheros txt.
 * [Src](src): Contiene el codigo fuente.
-    * [Init](src/__init__.py): Contiene todo los pasos previos que la aplicación necesita para el despliegue de esta.
+    * [Build](src/build.py): Contiene todo los pasos previos que la aplicación necesita para el despliegue de esta.
     * [Main](src/main.py): Punto de entrada para la aplicación.
     * [Natural Language](src/natural_language.py): Procesamiento del lenguaje natural de los articulos.
     * [Recommendation](src/recommendation.py): Sistema de recomendación de artículos.
@@ -34,7 +34,7 @@ Las dependecians se pueden encontrar en el fichero [Requirements](requirements.t
 
 ## Depliegue
 
-Se recomienda usar Visual Studio Code con la extension Python y tener instalada una versión de python entre 3.8.10 y 3.12.0.
+Se recomienda tener instalada una versión de python entre 3.8.10 y 3.12.0.
 
 1. Dirijase al directorio donde quiere instalar la aplicación.
 2. Descomprime el proyecto o clona con git el repositorio.
@@ -42,13 +42,27 @@ Se recomienda usar Visual Studio Code con la extension Python y tener instalada 
 ```shell
 git clone https://github.com/SammyHM/RRT.git
 ```
-3. Crea un entorno python preferiblemente venv.
+3. Monta la aplicación en el directorio.
+
+### Automático
+
+Ejecuta el script [build.py](src/build.py) que creará el entorno de la applicación e instalará sus dependencias. 
+
+```shell
+python src/build.py
+```
+
+### Manual
+
+
 
 #### Shell
 
 ```shell
-python3 -m venv .venv
+python venv .venv
 pip install requirements.txt
+python nltk.downloader stopwords
+python nltk.downloader punkt
 ```
 
 #### Visual Studio
@@ -64,6 +78,11 @@ pip install requirements.txt
 ![Requerimientos](docs/img/Requirements.png)
 
 </div>
+
+```shell
+.venv/Scripts/python.exe nltk.downloader stopwords
+.venv/Scripts/python.exe nltk.downloader punkt
+```
 
 4. Espera a que termine la instalación
 5. Ejecuta el script [main.py](src/main.py).
