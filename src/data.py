@@ -3,7 +3,7 @@ from json import dumps as save_json
 
 def create_txt(content: str, article: str, lan: str = 'default') -> str:
     """ Creates a text file at 'out' directory with its corresponding content.
-        Returns file path
+        Returns file path.
     """
     article = article.replace(' ', '_')
     tag_name = f'summary_{lan}'

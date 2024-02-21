@@ -21,7 +21,7 @@ Las dependecians se pueden encontrar en el fichero [Requirements](requirements.t
 ## Estructura
 
 * [Data](data): Contiene los datos generados por la aplicación. Estos son los PDFs relacionados a la temática que el usuario pide y JSON con información sobre el resultado de la query o los contenidos resumidos.
-* [Docs](docs): Contiene todos los recursos usados para este documento.
+* [Docs](docs): Contiene la documentación del código fuente y los recursos usados para esta.
 * [Out](out): Contiene todos los resumenes realizados, tanto los originales como los traducidos en ficheros txt.
 * [Src](src): Contiene el codigo fuente.
     * [Build](src/build.py): Contiene todo los pasos previos que la aplicación necesita para el despliegue de esta.
@@ -32,61 +32,6 @@ Las dependecians se pueden encontrar en el fichero [Requirements](requirements.t
 * [Gitignore](.gitignore): Contiene una lista de ficheros que no son interesantes de guardar.
 * [README](README.md): Es el documento que estas leyendo.
 * [Requirements](requirements): Contiene los paquetes dependencia del proyecto.
-
-## Depliegue
-
-Se recomienda tener instalada una versión de python entre 3.8.10 y 3.12.0.
-
-1. Dirijase al directorio donde quiere instalar la aplicación.
-2. Descomprime el proyecto o clona con git el repositorio.
-
-```shell
-git clone https://github.com/SammyHM/RRT.git
-```
-3. Monta la aplicación en el directorio.
-
-### Automático
-
-Ejecuta el script [build.py](src/build.py) que creará el entorno de la applicación e instalará sus dependencias. 
-
-```shell
-python src/build.py
-```
-
-### Manual
-
-
-
-#### Shell
-
-```shell
-python venv .venv
-pip install requirements.txt
-python nltk.downloader stopwords
-python nltk.downloader punkt
-```
-
-#### Visual Studio
-
-> 1. Instala la extensión *Python*.
-> 2. Pulsa *Ctrl+Shift+p* y selecciona *Python: Create Environment...*
-> 3. Selecciona el tipo de entorno
-> 4. Añade el fichero requirements.txt como dependencia.
-
-<div align='center'>
-
-![Entorno](docs/img/Environment.png)
-![Requerimientos](docs/img/Requirements.png)
-
-</div>
-
-```shell
-.venv/Scripts/python.exe nltk.downloader stopwords
-.venv/Scripts/python.exe nltk.downloader punkt
-```
-
-4. Espera a que termine la instalación
-5. Ejecuta el script [main.py](src/main.py).
 
 ## Funcionamiento
 
@@ -121,7 +66,7 @@ Repeats:
 Thanks for using GSpy!
 ```
 
-# Ejemplo
+## Ejemplo
 
 <div align='center'>
 
@@ -129,6 +74,10 @@ Thanks for using GSpy!
 
 </div>
 
-# Bibliografía
+## Documentación
 
-* [Natural Language Tool Kit.](https://www.kaggle.com/code/imkrkannan/text-summarization-with-nltk-in-python)
+* [Despliegue.](docs/src/build.md)
+* [Data.](docs/src/data.md)
+* [Main.](docs/src/main.md)
+* [Natural Language.](docs/src/natural_language.md)
+* [Recommendation.](docs/src/recommendation.md)
