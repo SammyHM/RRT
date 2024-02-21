@@ -4,10 +4,11 @@ from numpy import clip, sort
 
 from requests import get as fetch
 from PyPDF2 import PdfReader
+from re import sub as replace
 
 
 MAX_PUBS = 10
-SLEEP_TIMER = 3
+SLEEP_TIMER = 6
 
 
 def next_publication(publications: iter) -> Publication:
