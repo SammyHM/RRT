@@ -12,14 +12,14 @@ SLEEP_TIMER = 6
 
 
 def next_publication(publications: iter) -> Publication:
-    """ Given a publication iterable, sleeps the application for some time and returns the next publication
+    """ Given a publication iterable, sleeps the application for some time and returns the next publication.
     """
     sleep(SLEEP_TIMER)
     return next(publications)
 
 
 def search_pubs(query: str) -> list():
-    """ Given a topic, returns a list of Publication type objects
+    """ Given a topic, returns a list of Publication type objects.
     """
     # 1.- Find available publications on topic.
     try:
@@ -58,8 +58,7 @@ def best_publication(pubs: list()) -> Publication:
 
 
 def fetch_pdf_data(publication: Publication) -> None:
-    """ Given a publication, fetches data from the url and writes it to local file.
-        Returns the text found in the pdf
+    """ Given a publication, fetches the pdf from its associated url.
     """
     with open(f"data/pdf/{publication['bib']['pdf_title']}.pdf", 'wb') as pdf_file:
         response = fetch(publication['eprint_url'])
@@ -67,6 +66,8 @@ def fetch_pdf_data(publication: Publication) -> None:
 
 
 def parse_pdf_data(publication: Publication) -> str:
+    """ Given a publication, parses data that has been stored at data/pdf/{name} and returns its text formated.
+    """
     with open(f"data/pdf/{publication['bib']['pdf_title']}.pdf", 'rb') as pdf_file:
         # Read pdf file
         reader = PdfReader(pdf_file)

@@ -102,7 +102,7 @@ class NaturalLanguange:
 
     @staticmethod
     def translate(text: str, to_lang: str):
-        """ Given a target language, returns a translation of the given text
+        """ Given a target language, returns a translation of the given text.
         """
         # Validate input
         NaturalLanguange.assert_valid_language(to_lang)

@@ -25,7 +25,8 @@ Las dependecians se pueden encontrar en el fichero [Requirements](requirements.t
 * [Out](out): Contiene todos los resumenes realizados, tanto los originales como los traducidos en ficheros txt.
 * [Src](src): Contiene el codigo fuente.
     * [Build](src/build.py): Contiene todo los pasos previos que la aplicación necesita para el despliegue de esta.
-    * [Main](src/main.py): Punto de entrada para la aplicación.
+    * [Data](src/data.py): Contiene las funciones necesarias para guardar datos generados por la aplicación.
+    * [Main](src/main.py): Punto de entrada de la aplicación.
     * [Natural Language](src/natural_language.py): Procesamiento del lenguaje natural de los articulos.
     * [Recommendation](src/recommendation.py): Sistema de recomendación de artículos.
 * [Gitignore](.gitignore): Contiene una lista de ficheros que no son interesantes de guardar.
@@ -117,6 +118,7 @@ Repeats:
     Translating document to {language}...
     Saved translation at: {new file location}
 
+Thanks for using GSpy!
 ```
 
 # Ejemplo
