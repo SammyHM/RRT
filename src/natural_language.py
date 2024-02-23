@@ -100,9 +100,9 @@ class NaturalLanguange:
         return summary if summary != '' else max(sentence_score)
 
 
-    @staticmethod
-    def translate(text: str, to_lang: str):
+    def translate(self, text: str, to_lang: str) -> str:
         """ Given a target language, returns a translation of the given text.
+            Throws Exception if to_lang is not deinfed as a valid language.
         """
         # Validate input
         NaturalLanguange.assert_valid_language(to_lang)
@@ -119,21 +119,29 @@ class NaturalLanguange:
 
     @staticmethod
     def is_valid_language(language: str) -> bool:
+        """ Returns True/False if language is registered in the NaturalLanguage dictionary.
+        """
         return language in list(NaturalLanguange.dictionaries.keys())
 
 
     @staticmethod
-    def assert_valid_language(language: str):
+    def assert_valid_language(language: str) -> None:
+        """ Raises an exeption if language is not registered in the NatrualLanguage dictionary.
+        """
         if not NaturalLanguange.is_valid_language(language):
             raise Exception(f"Invalid language: {language}")
         
 
     @property
     def stopwords(self) -> set():
+        """ Defines a list of valid words for a language.
+        """
         return self._stopwords
 
 
     @stopwords.setter
-    def stopwords(self, language: str):
+    def stopwords(self, language: str) -> None:
+        """ Sets stopwords properties for a valid language.
+        """
         self.assert_valid_language(language)
         self._stopwords = set(stopwords.words(language))

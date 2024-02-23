@@ -8,7 +8,11 @@ from re import sub as replace
 
 
 MAX_PUBS = 10
+""" Defines the maximun number of publications to be requested at once.
+"""
 SLEEP_TIMER = 6
+""" Defines the number of seconds between each publication request.
+"""
 
 
 def next_publication(publications: iter) -> Publication:
@@ -76,5 +80,4 @@ def parse_pdf_data(publication: Publication) -> str:
         text = text.replace('-\n', '')
         text = text.replace('.', '.\n')
         text = text.replace(' \n', ' ')
-
     return text

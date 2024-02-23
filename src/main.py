@@ -49,7 +49,7 @@ if __name__ == '__main__':
         target_lan = input_valid_language()
         while target_lan.lower() != 'quit':
             print(f"Translating document to {target_lan}...")
-            translated_text = NaturalLanguange.translate(summary, target_lan)
+            translated_text = nl.translate(summary, target_lan)
             translate_path = create_txt(translated_text, article_name, target_lan)
             summary_data[target_lan] = translated_text
             print(f"Saved translation at: {translate_path}")
