@@ -33,14 +33,30 @@
   </tr>
   <tr>
     <td>
-      <div style="font-weight: bold;">def fetch_pdf_data(publication: Publication) &rarr; None:</div>
-      <div style="font-style: italic;">Given a publication, fetches the pdf from its associated url.</div>
+      <div style="font-weight: bold;">def get_publication_name(publication: Publication) &rarr; str:</div>
+      <div style="font-style: italic;">Given a publicaion, returns its title.</div>
     </td>
   </tr>
-  <tr>
     <td>
-      <div style="font-weight: bold;">def parse_pdf_data(publication: Publication) &rarr; str:</div>
-      <div style="font-style: italic;">Given a publication, parses data that has been stored at data/pdf/{name} and returns its text formated.</div>
+      <div style="font-weight: bold;">def get_publication_url(publication: Publication) &rarr; str:</div>
+      <div style="font-style: italic;">Given a publicaion, returns its title.</div>
+    </td>
+  </tr>
+    <td>
+      <div style="font-weight: bold;">def get_publication_name(publication: Publication) &rarr; str:</div>
+      <div style="font-style: italic;">Given a publicaion, returns its pdf url.</div>
+    </td>
+  </tr>
+  </tr>
+    <td>
+      <div style="font-weight: bold;">def get_publication_abstract(publication: Publication) &rarr; str:</div>
+      <div style="font-style: italic;">Given a publicaion, returns its abstract text.</div>
+    </td>
+  </tr>
+  </tr>
+    <td>
+      <div style="font-weight: bold;">def fetch_pdf_data(publication: Publication) &rarr; bytes:</div>
+      <div style="font-style: italic;">Given a publication, fetches the pdf data from its associated url and returns it.</div>
     </td>
   </tr>
 </table>

@@ -3,7 +3,6 @@ from time import sleep
 from numpy import clip, sort
 
 from requests import get as fetch
-from PyPDF2 import PdfReader
 from re import sub as replace
 
 
@@ -54,8 +53,8 @@ def best_publication(pubs: list()) -> Publication:
             best = pubs[index]
             break
     # 4.- Fetch all data of the best Publication
-    if best != None:
-        best = scholarly.fill(best)
+    # if best != None:
+    #     best = scholarly.fill(best)
     return best
 
 
@@ -74,26 +73,14 @@ def get_publication_url(publication: Publication) -> str:
 def get_publication_abstract(publication: Publication) -> str:
     """ Given a publicaion, returns its abstract text. 
     """
-    return best['bib']['abstract']
+    return publication['bib']['abstract']
 
 
-def fetch_pdf_data(publication: Publication) -> None:
-    """ Given a publication, fetches the pdf from its associated url.
+def fetch_pdf_data(publication: Publication) -> bytes:
+    """ Given a publication, fetches the pdf data from its associated url and returns it.
     """
-    with open(f"data/pdf/{publication['bib']['pdf_title']}.pdf", 'wb') as pdf_file:
-        response = fetch(publication['eprint_url'])
-        pdf_file.write(response.content)
-
-
-def parse_pdf_data(publication: Publication) -> str:
-    """ Given a publication, parses data that has been stored at data/pdf/{name} and returns its text formated.
-    """
-    with open(f"data/pdf/{publication['bib']['pdf_title']}.pdf", 'rb') as pdf_file:
-        # Read pdf file
-        reader = PdfReader(pdf_file)
-        text = '\n'.join([page.extract_text() for page in reader.pages])
-        # Format the resulting text
-        text = text.replace('-\n', '')
-        text = text.replace('.', '.\n')
-        text = text.replace(' \n', ' ')
-    return text
+    try:
+        data = fetch(publication['eprint_url']).content
+    except:
+        data =  None
+    return data
