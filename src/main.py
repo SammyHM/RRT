@@ -27,9 +27,7 @@ if __name__ == '__main__':
     nl = NaturalLanguange("english")
     query = input("What topic do you whant to search? ")
     print("\nSearching for publications...")
-    # pubs = search_pubs(query)
-    with open("data/json/query/Unit Testing.json") as json:
-        pubs = load(json)
+    pubs = search_pubs(query)
 
     if pubs == None:
         print(f"To many tries. Try in two days time.")
