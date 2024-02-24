@@ -45,7 +45,7 @@ def best_publication(pubs: list()) -> Publication:
         return None
     # 2.- Store an ordered list of publications score, based on Google's rank and number of citations
     best = None
-    true_rank = [1 / pubs[i]['gsrank'] * 1000 + pubs[i]['num_citations'] for i in range(len(pubs))]
+    true_rank = [1 / pubs[i]['gsrank'] * 10000 + pubs[i]['num_citations'] for i in range(len(pubs))]
     true_rank_sorted = sort(true_rank)[::-1]
     # 3.- The best publication must have eprint_url attribute, and must be a pdf
     for score in true_rank_sorted:
@@ -56,9 +56,25 @@ def best_publication(pubs: list()) -> Publication:
     # 4.- Fetch all data of the best Publication
     if best != None:
         best = scholarly.fill(best)
-    # 5.- Clean data
-    best['bib']['pdf_title'] = replace(r'[<>:"/\\|?*]', '_', best['bib']['title'])
     return best
+
+
+def get_publication_name(publication: Publication) -> str:
+    """ Given a publicaion, returns its title. 
+    """
+    return publication['bib']['title']
+
+
+def get_publication_url(publication: Publication) -> str:
+    """ Given a publicaion, returns its pdf url. 
+    """
+    return publication['eprint_url']
+
+
+def get_publication_abstract(publication: Publication) -> str:
+    """ Given a publicaion, returns its abstract text. 
+    """
+    return best['bib']['abstract']
 
 
 def fetch_pdf_data(publication: Publication) -> None:

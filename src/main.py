@@ -1,6 +1,7 @@
-from recommendation import search_pubs, best_publication, fetch_pdf_data, parse_pdf_data
+from recommendation import search_pubs, best_publication, get_publication_name, get_publication_url, get_publication_abstract, fetch_pdf_data, parse_pdf_data
 from natural_language import NaturalLanguange
 from data import create_txt, save_pubs, save_summaries
+from re import sub as replace
 
 
 def input_valid_language() -> str:
@@ -12,6 +13,12 @@ def input_valid_language() -> str:
     while(language != 'quit' and not NaturalLanguange.is_valid_language(language)):
         language = input(f"There's no support for {language}. Select a valid Language: ").lower()
     return language
+
+
+def valid_text_file(name: str) -> str:
+    """ Given a string, returns a string which is valid for file naming.
+    """
+    return replace(r'[<>:"/\\|?*]', ' ', name)
 
 
 if __name__ == '__main__':
@@ -31,16 +38,15 @@ if __name__ == '__main__':
         # 1.- Generate recomendation
         print("Picking the best publication...")
         best = best_publication(pubs)
-        article_name = best['bib']['pdf_title']
-        print(f"Best article found is: '{article_name}'.")
-        print(f"Link: {best['eprint_url']}.")
+        print(f"Best article found is: '{get_publication_name(best)}'.")
+        print(f"Link: {get_publication_url(best)}.")
         print("Fetching data...")
         fetch_pdf_data(best)
         print("Parsing data...")
         text = parse_pdf_data(best)
         # 2.- Summerize text
         print(f"\nSummarizing its contents...")
-        summary = f"Abstract:\n{best['bib']['abstract']}\nContent:\n{nl.text_reduction(text)}"
+        summary = f"Abstract:\n{get_publication_abstract(best)}\n\nContent:\n{nl.text_reduction(text)}"
         summary_path = create_txt(summary, article_name)
         print(f'Saved summary at {summary_path}')
         summary_data = {'default': summary}
