@@ -1,5 +1,6 @@
 from nltk.corpus import stopwords                       
 from nltk.tokenize import word_tokenize, sent_tokenize
+from numpy import mean, std
 
 from translate import Translator
 
@@ -62,7 +63,7 @@ class NaturalLanguange:
         self.stopwords = language
 
     
-    def text_reduction(self, text: str, deviations = 1.8) -> str:
+    def text_reduction(self, text: str, deviations = 1.5) -> str:
         """ Reduces text by calculating a score for each sentece, it's mean
             and as a result, return all senteces that deviate positively from it.
         """
@@ -86,15 +87,15 @@ class NaturalLanguange:
                         sentence_score[sentence] += frequency
                     else:
                         sentence_score[sentence] = 1
-        # Average sentence value
-        mean_score = 0
-        for sentence in sentence_score:
-            mean_score += sentence_score[sentence]
-        mean_score /= len(sentence_score)
+        # Set minimum value for score to be important
+        scores = list(sentence_score.values())
+        score_mean = mean(scores)
+        score_std = std(scores)
+        importance_limit = score_mean + deviations * score_std
         # Append valuable sentences, those that have a certain deviation from the mean
         summary = ''
         for sentence in sentences:
-            if sentence in sentence_score and sentence_score[sentence] > deviations * mean_score:
+            if sentence in sentence_score and sentence_score[sentence] > importance_limit:
                 summary += sentence + "\n"
         # Check if any valuable sentece was found, otherwise show just one sentece
         return summary if summary != '' else max(sentence_score)
@@ -113,7 +114,8 @@ class NaturalLanguange:
         translation = ""
         sentences = sent_tokenize(text)
         for sentence in sentences:
-            translation += translator.translate(sentence) + " "
+            if len(sentence) < 500:
+                translation += translator.translate(sentence) + " "
         return translation
 
 

@@ -2,7 +2,6 @@ from recommendation import search_pubs, best_publication, get_publication_name, 
 from natural_language import NaturalLanguange
 from data import create_txt, save_pubs, save_summaries, write_pdf_data, parse_pdf_data
 from re import sub as replace
-from json import load
 
 
 def input_valid_language() -> str:
